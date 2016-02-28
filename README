@@ -23,14 +23,6 @@ Server is written in Scala leveraging Spray, Spray-Can, Spray-Routing.
 Client (User behavior simulation) is written in shell script and golang.
 
 ------------------------------------------------------------------------------------------------------------------
-
-SUBMITTED BY:
-
-Bhaveek D. Desai | UFID: 45616629 | bhaveekdesai@ufl.edu
-
-
-------------------------------------------------------------------------------------------------------------------
-
 INSTRUCTIONS:
 
 1. Unzip the contents of "jce_policy-8.zip" tp "$JAVA_HOME/jre/lib/security" folder
