@@ -1,0 +1,52 @@
+Profile
+	- Fields: {id : String, age: Int, birthday: String. email: String, full_name: String, gender: String, location: String, posts: String}
+	- Reading: GET
+	- Creating: Not allowed
+	- Updating: POST {id}
+Page
+	- Fields: {id: String, owner_id: String, description: String, creation_time: String, followers: Profile[]}
+	- Reading: GET
+	- Updating: POST {id}
+	- Creating, Deleting: Not allowed
+
+Post
+	- Fields: {id: String, owner_id: String, page_id: String, last_updated_time: String, message: String}
+	- Reading: GET
+	- Creating, Updating: POST
+	- Deleting; DELETE
+
+Friendlist
+	- Fields {profiles: Profile[]}
+	- Reading: GET
+	- Creating, Updating, Deleting: Not allowed
+
+
+---
+
+extras: home
+
+papercut bugs:
+	- blank json instances appear for private/deleted posts which should otherwise not appear at all
+	- random nature of id generation may overwrite existing entities 
+	- user can change own id
+	- anything can be written without validation during 'put'
+	- no concept of page followers
+	- searching for wrong pages/profiles gives an http error
+	
+TEST CASES:
+	- User cannot post using someone else's id
+	- User cannot post to page if not an admin
+	- 
+------
+- make golang execute shell script
+- dummy data
+------
+Post:
+	-new (post)
+	curl -sL -w "%{http_code}" -H "Content-Type: application/json" -d @DATA1.json -X PUT http://127.0.0.1:8080/profile/1002?posts
+----
+52% post on friends wall (27)
+10% page (2)
+38% self (20)
+49% passive (49)
+51% active

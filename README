@@ -1,0 +1,67 @@
+DESCRIPTION:
+
+This project is an interpretation of the Facebook Graph API written in Spray implementing a subset of features.
+Considering the varying CRUD properties of different elements as per the official API, same are implemented to 
+the extent the official API supports.
+
+Following things are successfully implemented:
+1. Profile:
+	- Read
+	- Update
+2. Friendlist:
+	- Read
+3. Post:
+	-Read
+	-Creeate
+	-Update
+	-Delete
+4. Page:
+	-Read
+	-Update
+
+Server is written in Scala leveraging Spray, Spray-Can, Spray-Routing.
+Client (User behavior simulation) is written in shell script and golang.
+
+------------------------------------------------------------------------------------------------------------------
+
+SUBMITTED BY:
+
+Bhaveek D. Desai | UFID: 45616629 | bhaveekdesai@ufl.edu
+
+
+------------------------------------------------------------------------------------------------------------------
+
+INSTRUCTIONS:
+
+1. Unzip the contents of "jce_policy-8.zip" tp "$JAVA_HOME/jre/lib/security" folder
+2. Run launcher.scala [Server]
+3. Run client.scala [Client]
+ 
+------------------------------------------------------------------------------------------------------------------
+
+SECURITY IMPLEMENTATION: [End -to- End Encryption]
+
+1. Every request from user is sent in plaintext to server
+2. Server sends a secure random number encrypted with the requester's public key
+3. User decrypts, encrypts message data with : first, shared AES key, then, recipient's public key [RSA]
+4. In case of multiple recipients, multiple instances of data are encrypted with every recipient's public key [RSA]
+5. This, along with metadata (plaintext), is encrypted with AES encryption with the secure random number as the key
+6. This is sent to the server
+7. Server decrypts using AES, looks at metadata and pushes the message to database. The message remains in encrypted state 
+which can only be decrypted by the recipient
+
+BONUS:
+
+1. To tackle MITM attacks, the user checks the hash (SHA256) of its public key before using it for encryption.
+
+
+------------------------------------------------------------------------------------------------------------------
+
+REFERENCES:
+
+1. Scala Documentation
+2. www.javacodegeeks.com/2014/11/first-steps-with-rest-spray-and-scala.html
+3. http://alvinalexander.com/scala
+4. http://stackoverflow.com
+
+------------------------------------------------------------------------------------------------------------------
